@@ -1,0 +1,76 @@
+/*
+ * KT55 keymap
+ *
+ * Global key-position order = ALL of the left half's positions (0-27),
+ * followed by ALL of the right half's positions (28-55). This matches
+ * how ZMK numbers positions across a central(left)/peripheral(right)
+ * split, so do NOT interleave left/right rows when editing this file.
+ *
+ * Left half (28 positions = 27 keys + 1 encoder1 push key):
+ *   0-5   : row0 col0-5
+ *   6-11  : row1 col0-5
+ *   12-17 : row2 col0-5
+ *   18-23 : row3 col0-5
+ *   24-26 : row4 col0-2 (bottom row, 3 keys)
+ *   27    : row4 col3  (encoder1 push switch)
+ *
+ * Right half (28 positions, global index = local + 28):
+ *   28-33 : row0 col0-5
+ *   34-39 : row1 col0-5
+ *   40-45 : row2 col0-5
+ *   46-51 : row3 col0-5
+ *   52-55 : row4 col0-3 (bottom row, 4 keys)
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "Base";
+            bindings = <
+// ---- LEFT (positions 0-27) ----
+&kp TAB    &kp Q    &kp W    &kp E    &kp R    &kp T
+&kp ESC    &kp A    &kp S    &kp D    &kp F    &kp G
+&kp LSHFT  &kp Z    &kp X    &kp C    &kp V    &kp B
+&kp LCTRL  &kp LGUI &kp LALT &mo 1    &kp SPACE &kp SPACE
+&kp LBKT   &kp RBKT &kp MINUS
+&kp C_MUTE
+// ---- RIGHT (positions 28-55) ----
+&kp Y     &kp U    &kp I     &kp O   &kp P    &kp BSPC
+&kp H     &kp J    &kp K     &kp L   &kp SEMI &kp SQT
+&kp N     &kp M    &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+&kp SPACE &kp SPACE &mo 1    &kp RALT &kp RGUI &kp RCTRL
+&kp ENTER &kp EQUAL &kp BSLH &kp DEL
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>, <&inc_dec_kp PG_UP PG_DN>;
+        };
+
+        function_layer {
+            display-name = "Func";
+            bindings = <
+// ---- LEFT (positions 0-27) ----
+&kp GRAVE &kp N1  &kp N2  &kp N3  &kp N4  &kp N5
+&kp TAB   &trans  &trans  &trans  &trans  &trans
+&trans    &trans  &trans  &trans  &trans  &trans
+&trans    &trans  &trans  &trans  &trans  &trans
+&trans    &trans  &trans
+&trans
+// ---- RIGHT (positions 28-55) ----
+&kp N6   &kp N7   &kp N8 &kp N9    &kp N0   &kp BSPC
+&kp LEFT &kp DOWN &kp UP &kp RIGHT &trans   &trans
+&trans   &trans   &trans &trans    &trans   &trans
+&trans   &trans   &trans &trans    &trans   &trans
+&kp F11  &kp F12  &trans &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_BRI_UP C_BRI_DN>, <&inc_dec_kp C_NEXT C_PREV>;
+        };
+    };
+};

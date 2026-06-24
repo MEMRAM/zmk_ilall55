@@ -1,0 +1,8 @@
+file_format: "1"
+id: kt55_right
+name: KT55 Right
+type: shield
+url: ""
+requires: [nice_nano_v2]
+siblings: [kt55_left, kt55_right]
+features: ["keys"]

@@ -1,0 +1,23 @@
+if SHIELD_KT55_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "KT55"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif # SHIELD_KT55_LEFT
+
+if SHIELD_KT55_RIGHT
+
+config ZMK_KEYBOARD_NAME
+    default "KT55"
+
+endif # SHIELD_KT55_RIGHT
+
+if SHIELD_KT55_LEFT || SHIELD_KT55_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+endif
